@@ -60,11 +60,11 @@ def get_pie_chart(launch_site):
     if launch_site == 'All Sites':
         fig = px.pie(values=spacex_df.groupby('Launch Site')['class'].mean(), 
                      names=spacex_df.groupby('Launch Site')['Launch Site'].first(),
-                     title='Total Success Launches by Site')
+                     title='Total success launches by site')
     else:
         fig = px.pie(values=spacex_df[spacex_df['Launch Site']==str(launch_site)]['class'].value_counts(normalize=True), 
                      names=spacex_df['class'].unique(), 
-                     title='Total Success Launches for Site {}'.format(launch_site))
+                     title='Total success launches for site {}'.format(launch_site))
     return(fig)
 
 # TASK 4:
@@ -79,7 +79,7 @@ def get_payload_chart(launch_site, payload_mass):
                 y="class",
                 color="Booster Version Category",
                 hover_data=['Launch Site'],
-                title='Correlation Between Payload and Success for All Sites')
+                title='Correlation between payload weight and success for all sites')
     else:
         df = spacex_df[spacex_df['Launch Site']==str(launch_site)]
         fig = px.scatter(df[df['Payload Mass (kg)'].between(payload_mass[0], payload_mass[1])], 
@@ -87,7 +87,7 @@ def get_payload_chart(launch_site, payload_mass):
                 y="class",
                 color="Booster Version Category",
                 hover_data=['Launch Site'],
-                title='Correlation Between Payload and Success for Site {}'.format(launch_site))
+                title='Correlation between payload weight and success for site {}'.format(launch_site))
     return(fig)
 
 
